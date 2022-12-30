@@ -1,0 +1,9 @@
+helion-card, .helion-card {
+	display: block;
+	
+	background: var(--helion-color-surface-background);
+	color: var(--helion-color-surface-foreground);
+
+	border-radius: var(--helion-card-cornerRadius);
+	box-shadow: var(--helion-shadow);
+}

@@ -1,0 +1,50 @@
+$padding: .5em;
+$cornerRadius: 4px;
+$border-width: var(--helion-divider-width);
+$border-color: var(--helion-divider-color);
+
+.helion-outlined-button {
+	appearance: none;
+	-webkit-appearance: none;
+	outline: none;
+
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	line-height: 100%;
+
+	padding: $padding;
+	border: $border-width $border-color solid;
+	border-radius: $cornerRadius;
+
+	box-sizing: border-box;
+
+	&::before {
+		content: "";
+		position: absolute;
+		display: block;
+		left: 0; top: 0;
+		width: 100%; height: 100%;
+		background-color: currentColor;
+		opacity: 0;
+		will-change: opacity;
+		transition: opacity .1s;
+	}
+
+	&:hover::before,
+	&:focus-visible::before {
+		opacity: .05;
+	}
+
+	&:active::before {
+		opacity: .1;
+	}
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+	
+	&:disabled {
+		opacity: .7;
+	}
+}

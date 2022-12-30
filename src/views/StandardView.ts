@@ -1,0 +1,1 @@
+import "./StandardView.css";

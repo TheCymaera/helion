@@ -1,0 +1,139 @@
+$size: 1.2em;
+$splashColor: var(--helion-divider-color);
+$border: var(--helion-divider-width) var(--helion-divider-color) solid;
+$cornerRadius: .15em;
+$highlight: var(--helion-color-accent);
+$tickColor: white;
+$tickThickness: .14em;
+$disabledColor: var(--helion-divider-color);
+$transition: .1s ease-in-out;
+$splashTransition: .1s ease-in-out;
+
+@mixin Checkbox() {
+	position: relative;
+
+	// center children
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	// shape
+	height: $size;
+	width: $size;
+	border-radius: $cornerRadius;
+	box-sizing: border-box;
+
+	// paint
+	background-color: transparent;
+	border: $border;
+
+	transition: 
+		background-color $transition, 
+		border-color $transition, 
+		border $transition, 
+		opacity $transition;
+}
+
+@mixin Checkbox_active() {
+	background-color: $highlight;
+	border-color: $highlight;
+}
+
+@mixin Checkbox_activeDisabled() {
+	background-color: $disabledColor;
+	border-color: $disabledColor;
+}
+
+@mixin Tick() {
+	position: absolute;
+
+	display: block;
+	left:	50%;
+	top:	50%;
+	border: solid $tickColor $tickThickness;
+	border-right-width: 0;
+	border-top-width: 0;
+	box-sizing: border-box;
+
+	width: .55em;
+	height:	.33em;
+	transform: translate(-50%, -60%) rotate(-45deg);
+	opacity: 1;
+}
+
+@mixin Tick_indeterminate() {
+	border: none;
+	border-top: solid $tickColor $tickThickness;
+
+	width: .52em;
+	height:	0px;
+	transform: translate(-50%, -50%);
+}
+
+@mixin Tick_hidden() {
+	opacity: 0;
+}
+
+@mixin Splash() {
+	position: absolute;
+	pointer-events: none;
+
+	// shape
+	display: block;
+	height: 0;
+	width: 0;
+	border-radius: 50%;
+
+	// paint
+	opacity: 0;
+	background-color: $splashColor;
+
+	transition: 
+		opacity $splashTransition,
+		background-color $splashTransition,
+		width $splashTransition,
+		height $splashTransition;
+	
+	will-change: opacity, background-color, width, height;
+}
+
+@mixin Splash_active() {
+	background-color: var($highlight);
+}
+
+@mixin Splash_visible() {
+	opacity: 0.15;
+	height: 3em;
+	width: 3em;
+}
+
+.helion-checkbox {
+	// hide
+	position: absolute;
+	opacity: 0 !important;
+
+	&:disabled ~ * {
+		opacity: .7;
+	}
+
+	&:not(:disabled) ~ * {
+		cursor: pointer;
+	}
+
+	// box
+	& + * { @include Checkbox(); }
+	&:is(:checked, :indeterminate) + * { @include Checkbox_active(); }
+	&:is(:checked, :indeterminate):disabled + * { @include Checkbox_activeDisabled(); }
+	
+	// splash
+	& + ::before { content: ""; @include Splash(); }
+	&:is(:checked, :indeterminate) + ::before { @include Splash_active(); }
+	&:not(:disabled):is([animating-pressed],:focus-visible,:active) + ::before  {
+		@include Splash_visible();
+	}
+
+	// symbol
+	& + ::after { content: ""; @include Tick(); }
+	&:indeterminate + ::after { @include Tick_indeterminate(); }
+	&:not(:checked):not(:indeterminate) + ::after { @include Tick_hidden(); }
+}

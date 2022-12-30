@@ -1,0 +1,56 @@
+@use "../navigation/NavRail" as NavRail;
+
+standard-view {
+	display: grid;
+	color: var(--helion-color-backdrop-foreground);
+	background-color: var(--helion-color-backdrop-background);
+	z-index: 0;
+
+	grid-template:
+	"h h" min-content
+	"n b" 1fr
+	"f f" min-content / min-content 1fr;
+
+	> nav-rail {
+		padding-left: env(safe-area-inset-left, 0px);
+		padding-bottom: 0;
+
+		@include NavRail.Vertical;
+	}
+}
+
+standard-view[layout=mobile] {
+	grid-template:
+	"h" min-content
+	"b" 1fr
+	"f" min-content 
+	"n" min-content / 1fr;
+
+	> nav-rail {
+		padding-left: 0;
+		padding-bottom: env(safe-area-inset-bottom, 0px);
+		
+		@include NavRail.Horizontal;
+		@include NavRail.Stretched;
+	}
+}
+
+standard-view > [slot=header] {
+	grid-area: h;
+	z-index: 1;
+}
+
+standard-view > [slot=footer] {
+	grid-area: f;
+	z-index: 1;
+}
+
+standard-view > [slot=body] {
+	grid-area: b;
+	z-index: 0;
+}
+
+standard-view > [slot=nav-rail] {
+	grid-area: n;
+	z-index: 1;
+}

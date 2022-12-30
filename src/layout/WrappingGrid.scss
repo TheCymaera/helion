@@ -1,0 +1,26 @@
+helion-wrapping-grid, .helion-wrapping-grid {
+	--min-column-width: 100px;
+	
+	--_repeat-mode: auto-fill;
+	&[expand]{
+		--_repeat-mode: auto-fit;
+	}
+
+	--grid-template: repeat(var(--_repeat-mode), minmax(min(100%, var(--min-column-width)), 1fr));
+
+
+	--_repeat-mode: auto-fill;
+	&[sizing=max] {
+		--_repeat-mode: auto-fit;
+	}
+
+
+
+	display: grid;
+	grid-template-columns: var(--grid-template);
+	grid-template-rows: unset;
+	&[axis=vertical] {
+		grid-template-columns: unset;
+		grid-template-rows: var(--grid-template);
+	}
+}

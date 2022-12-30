@@ -1,0 +1,31 @@
+{
+	"name": "helion",
+	"version": "1.0.0",
+	"description": "UI Pattern library.",
+	"type": "module",
+	"files": [
+		"./src/**",
+		"./dst/**"
+	],
+	"scripts": {
+		"build": "tsc -p tsconfig.json & sass src:dst",
+		"dev": "tsc -p tsconfig.json -w & sass --watch src:dst"
+	},
+	"exports": {
+    "./": "./dst/"
+  },
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TheCymaera/helion.git"
+	},
+	"keywords": [
+		"ui",
+		"css"
+	],
+	"author": "Cymaera",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/TheCymaera/helion/issues"
+	},
+	"homepage": "https://github.com/TheCymaera/helion/"
+}

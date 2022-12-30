@@ -1,0 +1,10 @@
+code-block, .code-block {
+	display: block;
+
+	background: var(--helion-color-altSurface-background);
+	color: var(--helion-color-altSurface-foreground);
+	font-family: var(--helion-monospaceFontFamily);
+	
+	padding: .5em;
+	overflow: auto;
+}

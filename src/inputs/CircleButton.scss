@@ -1,0 +1,52 @@
+.helion-circle-button {
+	font: inherit;
+	color: inherit;
+	text-decoration: inherit;
+	line-height: 100%;
+	overflow: hidden;
+
+	width: 2.7em;
+	height: 2.7em;
+	
+	border: none;
+	border-radius: 50%;
+	box-shadow: var(helion-shadow);
+	cursor: pointer;
+	outline: none;
+
+	display: grid;
+	place-items: center;
+
+	background-color: var(--helion-color-contrast-background);
+	color: var(--helion-color-contrast-foreground);
+	
+	transition: background-color .05s ease;
+
+	// TODO: Replace when relative color is supported.
+	&:not(:disabled) {
+		&::before {
+			content: "";
+			display: block;
+			
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+	
+			background-color: currentColor;
+			opacity: 0;
+			transition: opacity .1s ease;
+			will-change: opacity;
+		}
+		
+		&:hover::before,
+		&:focus-visible::before {
+			opacity: .15;
+		}
+		
+		&:active::before {
+			opacity: .3;	
+		}
+	}
+}

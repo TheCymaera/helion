@@ -1,0 +1,68 @@
+.helion-full-window-document,
+.helion-full-window-document > body {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+
+	margin: 0px;
+
+	overflow: hidden;
+	overscroll-behavior: contain;
+}
+
+* {
+	position: relative;
+	box-sizing: border-box;
+
+	padding: 0;
+	margin: 0;
+	min-height: 0;
+	min-width: 0;
+}
+
+:root {
+	font-family: var(--helion-fontFamily);
+	font-size: 16px;
+	tab-size: 4;
+	line-height: 1.5;
+	accent-color: var(--helion-color-accent);
+
+	color: var(--helion-color-backdrop-foreground);
+	background: var(--helion-color-backdrop-background);
+
+	-webkit-tap-highlight-color: transparent;
+}
+
+a, .a {
+	color: var(--helion-color-accent);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6,
+p {
+	margin: .5em 0;
+}
+
+ul, ol {
+	padding-left: 1.5em;
+}
+
+small {
+	font-size: 80%;
+	opacity: .8;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid currentColor;
+	opacity: .3;
+}
+
+code, .code {
+	background: var(--helion-color-altSurface-background);
+	color: var(--helion-color-altSurface-foreground);
+	font-family: var(--helion-monospaceFontFamily);
+}

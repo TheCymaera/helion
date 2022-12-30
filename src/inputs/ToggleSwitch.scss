@@ -1,0 +1,139 @@
+:root {
+	--ToggleSwitch-trackHeight: 1.5em;
+	--ToggleSwitch-trackWidth: 2.5em;
+	--ToggleSwitch-trackColor: var(--helion-color-surface-foreground);
+	--ToggleSwitch-activeTrackColor: var(--helion-color-accent);
+	--ToggleSwitch-disabledTrackColor: var(--helion-color-surface-foreground);
+	
+	--ToggleSwitch-thumbSize: calc(var(--ToggleSwitch-trackHeight) * .8);
+	--ToggleSwitch-thumbColor: var(--helion-color-surface-background);
+	--ToggleSwitch-activeThumbColor: var(--ToggleSwitch-thumbColor);
+	--ToggleSwitch-disabledThumbColor: var(--ToggleSwitch-thumbColor);
+
+	--ToggleSwitch-splashSize: 3em;
+	--ToggleSwitch-splashColor: var(--ToggleSwitch-trackColor);
+	--ToggleSwitch-activeSplashColor: var(--helion-color-accent);
+	--ToggleSwitch-splashOpacity: .15;
+
+	--ToggleSwitch-transition: .2s ease;
+	--ToggleSwitch-splashTransition: .15s ease-in-out;
+}
+
+@mixin Track() {
+	position: relative;
+	height: var(--ToggleSwitch-trackHeight);
+	width: var(--ToggleSwitch-trackWidth);
+	box-sizing: border-box;
+
+	background: var(--ToggleSwitch-trackColor);
+	border-radius: var(--ToggleSwitch-trackHeight);
+
+	transition: background var(--ToggleSwitch-transition), opacity var(--ToggleSwitch-transition);
+}
+
+@mixin Track_on() {
+	background: var(--ToggleSwitch-activeTrackColor);
+}
+
+@mixin Track_disabled() {
+	background: var(--ToggleSwitch-disabledTrackColor);
+}
+
+@mixin TrackItem() {
+	// position
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(
+		calc(var(--ToggleSwitch-trackHeight) / 2 - 50%), 
+		-50%
+	);
+}
+
+@mixin TrackItem_on() {
+	transform: translate(
+		calc(var(--ToggleSwitch-trackWidth) - var(--ToggleSwitch-trackHeight) / 2  - 50%), 
+		-50%
+	);
+}
+
+@mixin Thumb() {
+	@include TrackItem();
+	width:	var(--ToggleSwitch-thumbSize);
+	height:	var(--ToggleSwitch-thumbSize);
+	background: var(--ToggleSwitch-thumbColor);
+	transition: transform var(--ToggleSwitch-transition);
+
+	display: block;
+	border-radius: 50%;
+}
+
+@mixin Thumb_on() {
+	@include TrackItem_on();
+	background: var(--ToggleSwitch-activeThumbColor);
+}
+
+@mixin Thumb_disabled() {
+	background: var(--ToggleSwitch-disabledThumbColor);
+}
+
+@mixin Splash() {
+	@include TrackItem();
+	width:	0;
+	height:	0;
+	background-color: var(--ToggleSwitch-splashColor);
+	opacity: 0;
+
+	display: block;
+	border-radius: 50%;
+
+	transition: 
+		transform var(--ToggleSwitch-transition), 
+		background-color var(--ToggleSwitch-transition), 
+		opacity var(--ToggleSwitch-splashTransition), 
+		width var(--ToggleSwitch-splashTransition), 
+		height var(--ToggleSwitch-splashTransition);
+}
+
+@mixin Splash_on() {
+	@include TrackItem_on();
+	background: var(--ToggleSwitch-activeSplashColor);
+}
+
+@mixin Splash_visible() {
+	width:	var(--ToggleSwitch-splashSize);
+	height:	var(--ToggleSwitch-splashSize);
+	opacity: var(--ToggleSwitch-splashOpacity);
+}
+
+.helion-toggle-switch {
+	// hide input
+	position: absolute;
+	opacity: 0 !important;
+
+	&:disabled ~ * {
+		opacity: .7;
+	}
+	
+	&:not(:disabled) ~ * {
+		cursor: pointer;
+	}
+
+	// track
+	+ * { @include Track(); }
+	&:checked + * { @include Track_on(); }
+	&:disabled + * { @include Track_disabled(); }
+	
+	// thumb
+	+ *::after { content: ""; @include Thumb(); }
+	&:checked + *::after { @include Thumb_on(); }
+	&:disabled + *::after { @include Thumb_disabled(); }
+
+	// splash
+	+ *::before { content: ""; @include Splash(); }
+	&:checked + *::before { @include Splash_on(); }
+	&:active:not(:disabled) + ::before,
+	&:not(:disabled):is([data-animating-pressed], :focus-visible) + *::before {
+		@include Splash_visible();
+	}
+}

@@ -1,0 +1,129 @@
+helion-app-bar-title, .helion-app-bar-title {
+	grid-area: t;
+	padding: 0 1em;
+	align-self: center;
+	font-size: 105%;
+	font-weight: bold;
+}
+
+helion-app-bar-left, .helion-app-bar-left {
+	grid-area: l;
+	display: flex;
+	justify-content: flex-start;
+}
+
+helion-app-bar-right, .helion-app-bar-right {
+	grid-area: r;
+	display: flex;
+	justify-content: flex-end;
+}
+
+helion-app-bar, .helion-app-bar {
+	--width: 3em;
+
+	display: grid;
+	overflow: hidden;
+	
+	user-select: none;
+	-webkit-user-select: none;
+
+	background: var(--helion-color-bar-background);
+	color: var(--helion-color-bar-foreground);
+	box-shadow: var(--helion-shadow);
+
+	grid-template: 
+		"l t r" var(--width)
+		"b b b" auto / auto 1fr auto;
+
+	&[center-title] {
+		grid-template: 
+			"l t r" var(--width)
+			"b b b" auto / 1fr auto 1fr;
+	}
+}
+
+.helion-app-bar-icon-button {
+	font: inherit;
+	color: inherit;
+	text-decoration: inherit;
+	line-height: 100%;
+
+	display: grid;
+	place-items: center;
+	
+	width: var(--width);
+	height: var(--width);
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: none;
+
+	&::before {
+		content: "";
+		
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+
+		--size: calc(var(--width) * 1.5);
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+
+		background: currentColor;
+		opacity: 0;
+		transition: opacity .1s ease;
+		will-change: opacity;
+	}
+
+	&:is(:focus-visible, :hover)::before {
+		opacity: 0.05;
+	}
+
+	&:active::before {
+		opacity: 0.1;
+	}
+}
+
+.helion-app-bar-text-button {
+	font: inherit;
+	color: inherit;
+	text-decoration: inherit;
+	line-height: 100%;
+
+	display: grid;
+	place-items: center;
+	
+	width: auto;
+	height: var(--width);
+	background: none;
+	border: none;
+	padding: 0 calc((var(--width) - 1em) / 2);
+	cursor: pointer;
+	outline: none;
+
+	&::before {
+		content: "";
+		
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+
+		background: currentColor;
+		opacity: 0;
+		transition: opacity .1s ease;
+		will-change: opacity;
+	}
+
+	&:is(:focus-visible, :hover)::before {
+		opacity: 0.05;
+	}
+
+	&:active::before {
+		opacity: 0.1;
+	}
+}

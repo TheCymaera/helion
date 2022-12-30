@@ -1,0 +1,11 @@
+.icon-field-container {
+	display: flex;
+	align-items: center;
+	gap: .5em;
+	margin: 0 .5em;
+
+	user-select: none;
+	-webkit-user-select: none;
+	pointer-events: none;
+	> * { pointer-events: auto; }
+}

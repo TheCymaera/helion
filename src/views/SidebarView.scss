@@ -1,0 +1,79 @@
+sidebar-view {
+	--sidebar-width: 300px;
+	--sidebar-height: 50%;
+	--sidebar-transition: .2s ease-in-out;
+
+	z-index: 0;
+}
+
+sidebar-view > [slot=sidebar] {
+	z-index: 1;
+}
+
+sidebar-view > [slot=main] {
+	z-index: 0;
+}
+
+sidebar-view:not([layout=mobile]) {
+	> * {
+		position: absolute;
+		height: 100%;
+		top: 0;
+	}
+
+	> [slot=sidebar] {
+		left: 0;
+		width: min(var(--sidebar-width), 100%);
+
+		transition: left var(--sidebar-transition);
+	}
+	
+	> [slot=main] {
+		right: 0;
+		width: calc(100% - var(--sidebar-width));
+
+		transition: width var(--sidebar-transition);
+	}
+
+	&:not([sidebar-opened]) {
+		> [slot=sidebar] {
+			left: calc(0px - var(--sidebar-width));;
+		}
+		
+		> [slot=main] {
+			width: 100%;
+		}
+	}
+}
+
+sidebar-view[layout=mobile] {
+	> * {
+		position: absolute;
+		width: 100%;
+		left: 0;
+	}
+
+	> [slot=sidebar] {
+		bottom: 0;
+		height: min(var(--sidebar-height), 100%);
+
+		transition: bottom var(--sidebar-transition);
+	}
+	
+	> [slot=main] {
+		top: 0;
+		height: calc(100% - var(--sidebar-height));
+
+		transition: height var(--sidebar-transition);
+	}
+
+	&:not([sidebar-opened]) {
+		> [slot=sidebar] {
+			bottom: calc(0px - var(--sidebar-height));;
+		}
+		
+		> [slot=main] {
+			height: 100%;
+		}
+	}
+}

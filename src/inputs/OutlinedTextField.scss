@@ -1,0 +1,48 @@
+.helion-outlined-text-field {
+	--outlinedTextField-padding: .5em;
+	
+	--outlinedTextField-cornerRadius: 4px;
+	--outlinedTextField-border-width: var(--helion-divider-width);
+	--outlinedTextField-border-color: var(--helion-divider-color);
+
+	outline: none;
+
+	display: block;
+	width: 100%;
+
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	line-height: 100%;
+
+	padding: var(--outlinedTextField-padding);
+	border: var(--outlinedTextField-border-width) var(--outlinedTextField-border-color) solid;
+	border-radius: var(--outlinedTextField-cornerRadius);
+
+	box-sizing: border-box;
+
+	outline: solid transparent calc(var(--outlinedTextField-border-width) * 2);
+	outline-offset: calc(var(--outlinedTextField-border-width) * -2);
+	transition: outline .1s ease;
+
+	&:focus {
+		outline-color: var(--helion-color-accent);
+	}
+
+	&[error], &:invalid {
+		outline-color: var(--helion-red-500);
+	}
+	
+	&:disabled {
+		opacity: .7;
+	}
+}
+
+.outlined-text-field:not(select) {
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+select.outlined-input:not(:disabled) {
+	cursor: pointer;
+}

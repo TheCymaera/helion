@@ -1,0 +1,27 @@
+@use "sass:color";
+
+$colors: (
+	"red"		: hsl(0, 55%, 54%),
+	"orange"	: hsl(29, 55%, 58%),
+	"yellow"	: hsl(51, 55%, 55%),
+	"lime"		: hsl(86, 55%, 56%),
+	"green"		: hsl(117, 52%, 50%),
+	"mint"		: hsl(165, 57%, 48%),
+	"cyan"		: hsl(177, 55%, 51%),
+	"cerulean"	: hsl(201, 55%, 61%),
+	"blue"		: hsl(231, 44%, 52%),
+	"purple"	: hsl(278, 46%, 52%),
+	"fuchsia"	: hsl(303, 44%, 52%),
+	"magenta"	: hsl(334, 44%, 52%),
+);
+
+:root {
+	@each $name, $value in $colors {
+		--helion-#{$name}: #{$value};
+
+		// TODO: Depreciate when relative colors are supported.
+		@for $i from 1 through 9  {
+			--helion-#{$name}-#{$i * 100}: #{color.scale($value, $lightness: ($i - 5) * 20%)};
+		}
+	}
+}

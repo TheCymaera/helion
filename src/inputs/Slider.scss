@@ -1,0 +1,79 @@
+$_trackHeight: 7px;
+$_trackBackground: var(--helion-color-altSurface-background);
+$_trackHoveredBackground: var(--helion-color-altSurface-background);
+
+$_thumbSize: 22px;
+$_thumbBackground: var(--helion-color-surface-foreground);
+$_thumbHoveredBackground: var(--helion-color-surface-foreground);
+
+$_highlightColor: var(--helion-color-accent);
+
+.helion-slider {
+	margin: $_trackHeight 0;
+	border: none;
+	background-color: transparent;
+	-webkit-appearance: none;
+	appearance: none;
+	outline: none;
+	width: 100%;
+
+	// readonly is always true for range inputs.
+	&:disabled { 
+		opacity: 0.7;
+	}
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
+	/* track */
+	@mixin Track() {
+		width: 100%;
+		height: $_trackHeight;
+		border-radius: $_trackHeight;
+
+		background: $_trackBackground;
+		border: none;
+	}
+	@mixin TrackHovered() {
+		background: $_trackHoveredBackground;
+	}
+
+	&::-webkit-slider-runnable-track { @include Track(); }
+	&::-moz-range-track { @include Track(); }
+	&:hover::-moz-range-track { @include TrackHovered(); }
+	&:hover::-webkit-slider-runnable-track { @include TrackHovered(); }
+
+	/* thumb */
+	@mixin Thumb() {
+		width: $_thumbSize;
+		height: $_thumbSize;
+		border-radius: 50%;
+
+		background: $_thumbBackground;
+		border: .2em solid var(--helion-color-surface-background);
+		box-sizing: border-box;
+
+		transition: background-color .1s ease, box-shadow .1s ease;
+	}
+	@mixin ThumbHovered() {
+		background: $_thumbHoveredBackground;
+	}
+	@mixin ThumbFocused() {
+		background: $_highlightColor;
+		box-shadow: 0 0 0 .15em $_highlightColor;
+	}
+
+	&::-webkit-slider-thumb {
+		margin-top: calc(0px - (#{$_thumbSize} - #{$_trackHeight}) / 2);
+		-webkit-appearance: none;
+		@include Thumb();
+	}
+	&::-moz-range-thumb {
+		@include Thumb();
+	}
+	&:hover:not(:disabled)::-webkit-slider-thumb { @include ThumbHovered(); }
+	&:hover:not(:disabled)::-moz-range-thumb { @include ThumbHovered(); }
+	&:is(:active, :focus-visible):not(:disabled)::-webkit-slider-thumb { @include ThumbFocused(); }
+	&:is(:active, :focus-visible):not(:disabled)::-moz-range-thumb { @include ThumbFocused(); }
+}

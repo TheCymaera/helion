@@ -1,0 +1,36 @@
+:root {
+	--helion-shadow: 0 0 10px 0 #0002;
+
+	--helion-color-accent: var(--helion-cyan);
+	--helion-fontFamily: Tahoma, sans-serif;
+	--helion-monospaceFontFamily: 'Courier New', Courier, monospace;
+
+	// input, button outlines
+	// TODO: Depreciate when relative colors are supported. Use semi-transparent colors instead.
+	--helion-divider-width: 1px;
+	--helion-divider-color: #aaa;
+
+	// cards, panels
+	--helion-color-surface-background: #fff;
+	--helion-color-surface-foreground: #444;
+
+	// backdrop
+	--helion-color-backdrop-background: #eee;
+	--helion-color-backdrop-foreground: var(--helion-color-surface-foreground);
+
+	// code blocks, fields
+	// TODO: Depreciate when relative colors are supported. Use semi-transparent colors instead.
+	--helion-color-altSurface-background: #eee;
+	--helion-color-altSurface-foreground: var(--helion-color-surface-foreground);
+
+	// app bar, nav rail, custom bar
+	--helion-color-bar-background: #fff;
+	--helion-color-bar-foreground: var(--helion-color-surface-foreground);
+
+	// circle buttons
+	--helion-color-contrast-background: var(--helion-color-surface-foreground);
+	--helion-color-contrast-foreground: var(--helion-color-surface-background);
+
+	// cards
+	--helion-card-cornerRadius: .3em;
+}

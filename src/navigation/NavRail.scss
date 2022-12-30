@@ -1,0 +1,108 @@
+@mixin Vertical {
+	flex-direction: column;
+	height: 100%;
+	width: var(--width);
+}
+
+@mixin Horizontal {
+	flex-direction: row;
+	height: var(--width);
+	width: 100%;
+}
+
+@mixin Stretched {
+	> * { flex: 1; }
+	> :is(helion-nav-rail-spacer, .helion-nav-rail-spacer) { display: none; }
+}
+
+helion-nav-rail, .helion-nav-rail {
+	--width: 65px;
+
+	font: inherit;
+	line-height: 100%;
+	
+	display: flex;
+	overflow: hidden;
+	
+	user-select: none;
+	-webkit-user-select: none;
+
+	background: var(--helion-color-bar-background);
+	color: var(--helion-color-bar-foreground);
+	box-shadow: var(--helion-shadow);
+
+	// axis
+	@include Vertical;
+	&[axis=horizontal] {
+		@include Horizontal;
+	}
+
+	// layout
+	&[layout=stretched] {
+		@include Stretched;
+	}
+}
+
+helion-nav-rail-spacer, .helion-nav-rail-spacer {
+	flex: 1;
+}
+
+.helion-nav-rail-icon-button {
+	position: relative;
+	width: var(--width);
+	height: var(--width);
+
+	background: transparent !important;
+	border: none;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	outline: none;
+
+	font: inherit;
+	color: inherit;
+	text-decoration: inherit;
+	transition: color .05s ease;
+	&:not(:disabled) {
+		&::before {
+			content: "";
+
+			// placement
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			
+			// shape
+			width: var(--width);
+			height: var(--width);
+			border-radius: 50%;
+
+			// paint
+			background: var(--helion-color-bar-foreground);
+			opacity: 0;
+			transition: opacity .1s ease;
+			will-change: opacity;
+		}
+
+		&:focus-visible::before,
+		&:hover::before {
+			opacity: 0.05;
+		}
+
+		&:active::before {
+			opacity: 0.10;
+		}
+	}
+	
+	&[selected] {
+		color: var(--helion-color-accent);
+	}
+
+	&:disabled {
+		opacity: .7;
+	}
+}

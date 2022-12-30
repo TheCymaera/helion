@@ -1,0 +1,6 @@
+helion-intangible, .helion-intangible {
+	pointer-events: none;
+	> * {
+		pointer-events: initial;
+	}
+}
