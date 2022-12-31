@@ -1,6 +1,6 @@
 {
 	"name": "helion",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "UI Pattern library.",
 	"type": "module",
 	"files": [
