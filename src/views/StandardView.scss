@@ -1,6 +1,6 @@
 @use "../navigation/NavRail" as NavRail;
 
-standard-view {
+helion-standard-view {
 	display: grid;
 	color: var(--helion-color-backdrop-foreground);
 	background-color: var(--helion-color-backdrop-background);
@@ -11,7 +11,7 @@ standard-view {
 	"n b" 1fr
 	"f f" min-content / min-content 1fr;
 
-	> nav-rail {
+	> helion-nav-rail {
 		padding-left: env(safe-area-inset-left, 0px);
 		padding-bottom: 0;
 
@@ -19,14 +19,14 @@ standard-view {
 	}
 }
 
-standard-view[layout=mobile] {
+helion-standard-view[layout=mobile] {
 	grid-template:
 	"h" min-content
 	"b" 1fr
 	"f" min-content 
 	"n" min-content / 1fr;
 
-	> nav-rail {
+	> helion-nav-rail {
 		padding-left: 0;
 		padding-bottom: env(safe-area-inset-bottom, 0px);
 		
@@ -35,22 +35,22 @@ standard-view[layout=mobile] {
 	}
 }
 
-standard-view > [slot=header] {
+helion-standard-view > [slot=header] {
 	grid-area: h;
 	z-index: 1;
 }
 
-standard-view > [slot=footer] {
+helion-standard-view > [slot=footer] {
 	grid-area: f;
 	z-index: 1;
 }
 
-standard-view > [slot=body] {
+helion-standard-view > [slot=body] {
 	grid-area: b;
 	z-index: 0;
 }
 
-standard-view > [slot=nav-rail] {
+helion-standard-view > [slot=helion-nav-rail] {
 	grid-area: n;
 	z-index: 1;
 }

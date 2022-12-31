@@ -5,18 +5,18 @@ class DuoViewElement extends HTMLElement {
 	}
 }
 
-customElements.define("duo-view", DuoViewElement);
+customElements.define("helion-duo-view", DuoViewElement);
 
 const html = /*html*/`
 <slot name="header"></slot>
 <slot name="primary"></slot>
 <slot name="footer"></slot>
 
-<duo-view-secondary>
+<div>
 	<slot name="secondary-header"></slot>
 	<slot name="secondary"></slot>
 	<slot name="secondary-footer"></slot>
-</duo-view-secondary>
+</div>
 
 <style>
 slot {
@@ -26,7 +26,7 @@ slot {
 [name=header] 	{ grid-area: h; }
 [name=primary] 	{ grid-area: p; }
 [name=footer] 	{ grid-area: f; }
-duo-view-secondary {
+div {
 	grid-area: s;
 	display: flex;
 	flex-direction: column;
@@ -37,7 +37,7 @@ duo-view-secondary {
 	flex: 1;
 }
 
-:host, duo-view-secondary {
+:host, div {
 	background: var(--helion-color-backdrop-background);
 	color: var(--helion-color-backdrop-foreground);
 }
@@ -52,7 +52,7 @@ duo-view-secondary {
 	z-index: 0;
 }
 
-duo-view-secondary > * {
+div > * {
 	max-width: 100%;
 }
 	
@@ -66,7 +66,7 @@ duo-view-secondary > * {
 	/ minmax(var(--primary-width), auto) 1fr;
 }
 
-:host(:not([layout=mobile])) duo-view-secondary { z-index: 1; }
+:host(:not([layout=mobile])) div { z-index: 1; }
 :host(:not([layout=mobile])) [name=primary] 	{ z-index: 2; }
 :host(:not([layout=mobile])) [name=header] 		{ z-index: 3; }
 :host(:not([layout=mobile])) [name=footer] 		{ z-index: 4; }
@@ -75,7 +75,7 @@ duo-view-secondary > * {
 	display: none;
 }
 
-:host:not([layout=mobile]:not([opened])) duo-view-secondary {
+:host:not([layout=mobile]:not([opened])) div {
 	display: none;
 }
 
@@ -91,7 +91,7 @@ duo-view-secondary > * {
 :host([layout=mobile]) [name=primary] 		{ z-index: 1; }
 :host([layout=mobile]) [name=header] 		{ z-index: 2; }
 :host([layout=mobile]) [name=footer] 		{ z-index: 3; }
-:host([layout=mobile]) duo-view-secondary 	{ 
+:host([layout=mobile]) div 	{ 
 	z-index: 4;
 	position: absolute;
 	top: 0;
@@ -101,7 +101,7 @@ duo-view-secondary > * {
 	transition: left var(--page-transition);
 }
 
-:host([layout=mobile][opened]) duo-view-secondary {
+:host([layout=mobile][opened]) div {
 	left: 0;
 }
 </style>

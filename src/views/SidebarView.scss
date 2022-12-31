@@ -1,4 +1,4 @@
-sidebar-view {
+helion-sidebar-view {
 	--sidebar-width: 300px;
 	--sidebar-height: 50%;
 	--sidebar-transition: .2s ease-in-out;
@@ -6,15 +6,15 @@ sidebar-view {
 	z-index: 0;
 }
 
-sidebar-view > [slot=sidebar] {
+helion-sidebar-view > [slot=sidebar] {
 	z-index: 1;
 }
 
-sidebar-view > [slot=main] {
+helion-sidebar-view > [slot=main] {
 	z-index: 0;
 }
 
-sidebar-view:not([layout=mobile]) {
+helion-sidebar-view:not([layout=mobile]) {
 	> * {
 		position: absolute;
 		height: 100%;
@@ -46,7 +46,7 @@ sidebar-view:not([layout=mobile]) {
 	}
 }
 
-sidebar-view[layout=mobile] {
+helion-sidebar-view[layout=mobile] {
 	> * {
 		position: absolute;
 		width: 100%;
