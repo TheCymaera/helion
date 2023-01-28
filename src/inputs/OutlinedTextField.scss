@@ -29,7 +29,7 @@
 		outline-color: var(--helion-color-accent);
 	}
 
-	&[error], &:invalid {
+	&.helion-has-error, &:invalid {
 		outline-color: var(--helion-red-500);
 	}
 	
@@ -38,11 +38,11 @@
 	}
 }
 
-.outlined-text-field:not(select) {
+.helion-outlined-text-field:not(select) {
 	appearance: none;
 	-webkit-appearance: none;
 }
 
-select.outlined-input:not(:disabled) {
+select.helion-outlined-input:not(:disabled) {
 	cursor: pointer;
 }
