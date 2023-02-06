@@ -1,6 +1,8 @@
-helion-card, .helion-card {
+helion-card {
 	display: block;
-	
+}
+
+helion-card, .helion-card {
 	background: var(--helion-color-surface-background);
 	color: var(--helion-color-surface-foreground);
 

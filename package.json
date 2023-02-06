@@ -8,6 +8,7 @@
 		"./dst/**"
 	],
 	"scripts": {
+		"build": "tsc -p tsconfig.json & sass src:dst",
 		"dev": "tsc -p tsconfig.json -w & sass --watch src:dst"
 	},
 	"exports": {
