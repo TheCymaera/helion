@@ -1,6 +1,6 @@
 {
 	"name": "helion",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "UI Pattern library.",
 	"type": "module",
 	"files": [
@@ -8,7 +8,7 @@
 		"./dst/**"
 	],
 	"scripts": {
-		"build": "tsc -p tsconfig.json & sass src:dst",
+		"build": "doesn't compile TS for some reason",
 		"dev": "tsc -p tsconfig.json -w & sass --watch src:dst"
 	},
 	"exports": {
