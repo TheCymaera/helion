@@ -20,15 +20,17 @@
 }
 
 @mixin Track() {
+	display: inline-block;
+
 	position: relative;
 	height: var(--ToggleSwitch-trackHeight);
 	width: var(--ToggleSwitch-trackWidth);
 	box-sizing: border-box;
 
-	background: var(--ToggleSwitch-trackColor);
+	background-color: var(--ToggleSwitch-trackColor);
 	border-radius: var(--ToggleSwitch-trackHeight);
 
-	transition: background var(--ToggleSwitch-transition), opacity var(--ToggleSwitch-transition);
+	transition: background-color var(--ToggleSwitch-transition), opacity var(--ToggleSwitch-transition);
 }
 
 @mixin Track_on() {

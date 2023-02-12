@@ -1,15 +1,17 @@
-.helion-full-window-document,
-.helion-full-window-document > body {
+html, body {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
+}
 
-	margin: 0px;
-
-	overflow: hidden;
-	overscroll-behavior: contain;
+.helion-fill-parent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 * {
