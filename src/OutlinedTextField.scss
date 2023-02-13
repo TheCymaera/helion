@@ -30,7 +30,7 @@
 	}
 
 	&.helion-has-error, &:invalid {
-		outline-color: var(--helion-red-500);
+		outline-color: var(--helion-red);
 	}
 	
 	&:disabled {
