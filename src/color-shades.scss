@@ -1,0 +1,11 @@
+// TODO: Depreciate when relative colors are supported.
+@use "sass:color";
+@use "./colors" as *;
+
+:root {
+	@each $name, $value in $colors {
+		@for $i from 1 through 9  {
+			--helion-#{$name}-#{$i * 100}: #{color.scale($value, $lightness: ($i - 5) * 20%)};
+		}
+	}
+}

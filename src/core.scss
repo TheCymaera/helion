@@ -1,3 +1,12 @@
+@use "sass:color";
+@use "./colors" as *;
+
+:root {
+	@each $name, $value in $colors {
+		--helion-#{$name}: #{$value};
+	}
+}
+
 html, body {
 	position: absolute;
 	top: 0;
