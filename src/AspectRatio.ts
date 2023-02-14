@@ -10,12 +10,12 @@ template.innerHTML = /*html*/`
 }
 
 ::slotted(*) {
-	--width: min(100%, calc(var(--_contentHeight) * var(--aspect-ratio)));
-	--height: min(100%, calc(var(--_contentWidth) / var(--aspect-ratio)));
-	min-width: var(--width) !important;
-	max-width: var(--width) !important;
-	min-height: var(--height) !important;
-	max-height: var(--height) !important;
+	--_width: min(100%, calc(var(--_contentHeight) * var(--aspect-ratio)));
+	--_height: min(100%, calc(var(--_contentWidth) / var(--aspect-ratio)));
+	min-width: var(--_width) !important;
+	max-width: var(--_width) !important;
+	min-height: var(--_height) !important;
+	max-height: var(--_height) !important;
 	box-sizing: border-box;
 }
 </style>
