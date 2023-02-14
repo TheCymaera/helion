@@ -1,7 +1,3 @@
-$borderRadius: .2em;
-$foreground: white;
-$background: var(--helion-color-accent);
-
 .helion-filled-button {
 	font: inherit;
 	color: inherit;
@@ -10,12 +6,12 @@ $background: var(--helion-color-accent);
 	padding: .75em;
 	
 	border: none;
-	border-radius: $borderRadius;
+	border-radius: .2em;
 	outline: none;
 	overflow: hidden;
 
-	background-color: $background;
-	color: $foreground;
+	background-color: var(--helion-color-contrast-background);
+	color: var(--helion-color-contrast-foreground);
 
 	transition: background-color .1s ease;
 
@@ -34,13 +30,14 @@ $background: var(--helion-color-accent);
 			top: 0;
 			width: 100%;
 			height: 100%;
-			background: $foreground;
+			background: currentColor;
 			opacity: 0;
 			transition: opacity .1s ease;
 			will-change: opacity;
 		}
 	
-		&:is(:hover,:focus-visible)::before {
+		&:hover::before,
+		&:focus-visible::before {
 			opacity: .15;
 		}
 		

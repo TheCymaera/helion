@@ -1,0 +1,23 @@
+helion-card-button {
+	display: block;
+}
+
+helion-card-button, .helion-card-button {
+	background: var(--helion-color-surface-background);
+	color: var(--helion-color-surface-foreground);
+
+	border-radius: var(--helion-card-cornerRadius);
+	box-shadow: var(--helion-shadow);
+
+	cursor: pointer;
+
+	transition: box-shadow .1s ease-in-out;
+
+	font: inherit;
+	color: inherit;
+	text-decoration: inherit;
+}
+
+helion-card-button:hover, .helion-card-button:hover {
+	box-shadow: var(--helion-shadow-hard);
+}

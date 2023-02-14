@@ -1,5 +1,7 @@
 :root {
 	--helion-shadow: 0 0 10px 0 #0002;
+	// TODO: Depreciate when relative colors are supported. Use semi-transparent colors instead.
+	--helion-shadow-hard: 0 0 15px 0 #0003;
 
 	--helion-color-accent: var(--helion-cyan);
 	--helion-fontFamily: Tahoma, sans-serif;

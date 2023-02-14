@@ -1,18 +1,3 @@
-export class AspectRatioElement extends HTMLElement {
-	constructor() {super();
-		const root = this.attachShadow({ mode: "open" });
-		root.appendChild(template.content.cloneNode(true));
-		resizeObserver.observe(this);
-	}
-
-	setAspectRatio(width: number, height = 1) {
-		this.style.setProperty("--aspect-ratio", (width / height).toString());
-		return this;
-	}
-}
-
-customElements.define("helion-aspect-ratio", AspectRatioElement);
-
 const template = document.createElement("template");
 template.innerHTML = /*html*/`
 <style>
@@ -52,3 +37,17 @@ const resizeObserver = new ResizeObserver((entries)=>{
 		slot.style.setProperty("--_contentWidth", width + "px");
 	}
 });
+
+export class AspectRatioElement extends HTMLElement {
+	constructor() {super();
+		const root = this.attachShadow({ mode: "open" });
+		root.appendChild(template.content.cloneNode(true));
+		resizeObserver.observe(this);
+	}
+
+	setAspectRatio(width: number, height = 1) {
+		this.style.setProperty("--aspect-ratio", (width / height).toString());
+		return this;
+	}
+}
+customElements.define("helion-aspect-ratio", AspectRatioElement);
